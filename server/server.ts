@@ -370,12 +370,12 @@ function addSecurityHeaders(_req: Request, res: Response, next: NextFunction) {
 	const policies = [
 		"default-src 'none'", // default to nothing
 		"base-uri 'none'", // disallow <base>, has no fallback to default-src
-		"form-action 'self'", // 'self' to fix saving passwords in Firefox, even though login is handled in javascript
-		"connect-src 'self' ws: wss:", // allow self for polling; websockets
+		"form-action 'self' https:", // 'self' to fix saving passwords in Firefox, even though login is handled in javascript
+		"connect-src 'self' ws: wss: https:", // allow self for polling; websockets
 		"style-src 'self' https: 'unsafe-inline'", // allow inline due to use in irc hex colors
-		"script-src 'self'", // javascript
-		"worker-src 'self'", // service worker
-		"manifest-src 'self'", // manifest.json
+		"script-src 'self' https:", // javascript
+		"worker-src 'self' https:", // service worker
+		"manifest-src 'self' https:", // manifest.json
 		"font-src 'self' https:", // allow loading fonts from secure sites (e.g. google fonts)
 		"media-src 'self' https:", // self for notification sound; allow https media (audio previews)
 	];
